@@ -3,7 +3,8 @@ import random
 import urllib.request
 from PIL import Image
 import time
-import send_meme
+from instapy_cli import client
+from pushbullet import Pushbullet
 import config
 
 
@@ -59,7 +60,7 @@ def get_image(_memes, posted_memes, captions, l_caps):
     posted_memes.add(meme.id)
     with open('data/posted_memes.txt', 'w') as file:
         file.writelines([meme_id + '\n' for meme_id in posted_memes])
-    return send_meme.Upload(caption, media_path)
+    return send_meme(caption, media_path)
 
 
 def get_caption(captions, last_captions):
@@ -75,4 +76,21 @@ def get_caption(captions, last_captions):
                 file.writelines(lasts)
             return caption
 
-if __name__ == '__main__': get_image(*get_data())
+
+def send_meme(caption, media_path='Data/meme.jpg', media_type='Photo'):
+    pb = Pushbullet(config.PUSHBULLET_API_KEY)
+    phones = [device for device in pb.devices if device.icon == 'phone']
+    with open(media_path, 'rb') as pic: file_data = pb.upload_file(pic, 'picture.jpg')
+    for phone in phones:
+        # e.g. with a url
+        # push = pb.push_file(file_url="https://i.imgur.com/IAYZ20i.jpg", file_name="meme.jpg", file_type="image/jpeg")
+        phone.push_note(f'From r/{config.SUBREDDIT}', caption)
+        phone.push_file(**file_data)
+    return phones != []
+
+
+if __name__ == '__main__':
+    sent = get_image(*get_data())
+    if sent: print('Sent meme')
+    else: print('ERROR: meme not sent')
+
