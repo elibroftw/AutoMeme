@@ -1,0 +1,6 @@
+__pycache__/
+data/last_captions.txt
+data/meme.jpg
+data/posted_memes.txt
+.env
+config.json
