@@ -17,7 +17,7 @@ Autoposting does not work at the moment due to Instagram changing its private AP
 3. Clone or Download this repo
 4. In a terminal opened in the repo dir, do `pip install -r requirements.txt`
 5. Create a `.env` file with the information in config.py
-   1. `.env` format:
+   1. Format:
       ```
       REDDIT_CLIENT_ID=VALUE
       REDDIT_SECRET=VALUE

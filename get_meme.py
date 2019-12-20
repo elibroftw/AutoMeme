@@ -45,6 +45,10 @@ def get_image(_memes, posted_memes, captions, l_caps):
 
     if media_path == 'data/meme.jpg':
         img = Image.open('data/meme.jpg').convert('RGB')
+        # TODO: only resize if meme is out of ratio
+        # TODO: paste meme onto a black x black square of size max(w, h)
+        # TODO: try to crop out any white or black space
+        # https://stackoverflow.com/questions/10615901/trim-whitespace-using-pil
         img.resize(config.Size, Image.ANTIALIAS)
         img.save('data/meme.jpg')
 
