@@ -11,8 +11,8 @@ def Upload(caption, media_path='Data/meme.jpg', media_type='Photo'):
     for phone in phones:
         # e.g. with a url
         # push = pb.push_file(file_url="https://i.imgur.com/IAYZ20i.jpg", file_name="meme.jpg", file_type="image/jpeg")
+        phone.push_note(f'From r/{config.SUBREDDIT}', caption)
         phone.push_file(**file_data)
-        phone.push_note(f'r/{config.SUBREDDIT}', caption)
     if phones:
         print(f'Sent the meme, with the caption: {caption}')
         return True

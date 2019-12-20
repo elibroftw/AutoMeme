@@ -47,8 +47,14 @@ def get_image(_memes, posted_memes, captions, l_caps):
         img.resize(config.Size, Image.ANTIALIAS)
         img.save('data/meme.jpg')
 
+    try:
+        with open('data/hashtags.txt') as f:
+            hashtags = f.read().replace('\n', ' ').strip()
+    except FileNotFoundError:
+        hashtags = '#meme'
+        
     if config.auto_caption: caption = get_caption(captions, l_caps)
-    else: caption = f'"{meme.title}" - u/{meme.author}'
+    else: caption = f'"{meme.title}" - u/{meme.author} \n\n TAGS \n\n {hashtags}'
 
     posted_memes.add(meme.id)
     with open('data/posted_memes.txt', 'w') as file:
