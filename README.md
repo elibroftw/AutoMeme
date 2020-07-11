@@ -1,7 +1,7 @@
 # AutoMeme
 Originally created by [Daniel Munch](https://github.com/Dmunch04).
 
-It was not working for me, and I did not like the formatting, so I modified it to my liking.
+The origina code did not work for me and I did not like the formatting, so I modified it to my liking.
 
 AutoMeme retrieves memes from a subreddit of your choice and ~posts it on Instagram for you~ sends it to your phone so that you can easily post it onto Instagram.
 
